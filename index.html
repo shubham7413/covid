@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/99d1df08d7.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <style>
+    body {
+      color: #414141;
+      font-family: 'Recursive', sans-serif;
+
+    }
+
+
+
+    .user-hidden {
+      display: none;
+    }
+
+    .row {
+      width: 100%;
+    }
+
+    .col {
+      /* padding-right: 10px; */
+    }
+
+    .heading,
+    .state_ut,
+    .statistics {
+      /* border: 1px solid grey; */
+      margin: 2px 2px;
+      border-radius: 2px;
+      padding: 8px 0px 8px 15px;
+    }
+
+
+    .heading {
+      background-color: rgb(211, 211, 211);
+      color: #1d1d1d;
+      font-weight: 600;
+      /* border: 1px solid black; */
+      /* padding: 0 5px; */
+
+    }
+
+    .state_ut {
+      background-color: rgb(211, 211, 211);
+      color: #2c2c2c;
+      font-weight: 600;
+    }
+
+    .statistics {
+      background-color: rgb(245, 245, 245);
+    }
+
+    .card:hover {
+      background-color: rgb(219, 219, 219);
+    }
+
+    .row:hover .statistics {
+      background-color: rgb(182, 182, 182);
+      cursor: pointer;
+    }
+
+    .row:hover .state_ut {
+      background-color: rgb(182, 182, 182);
+      cursor: pointer;
+    }
+    .is-confirmed,.is-active,.is-recovered,.is-deceased {
+      font-size: 0.85rem;
+      font-weight: 650;
+
+    }
+    .is-confirmed {
+      color: rgb(255, 79, 79);
+    }
+    .is-active {
+      color: rgb(255, 79, 79);
+    }
+    .is-recovered {
+      color: rgb(59, 192, 59);
+    }
+    .is-deceased {
+      color: rgb(129, 129, 129);
+    }
+    h6.total-is-confirmed,h6.total-is-recovered,h6.total-is-deceased {
+      font-size: 0.85rem;
+    }
+  </style>
+  <title>Hello, world!</title>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col">
+      <div class="card border-0" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-danger text-center">Confirmed</h5>
+          <h6 class="card-subtitle mb-2 text-danger total-is-confirmed"></h6>
+          <p class="card-text text-danger text-center total-confirmed"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card border-0" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-primary text-center">Active</h5>
+          <h6 class="card-subtitle mb-2 text-primary"></h6>
+          <p class="card-text text-primary text-center total-active"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card border-0" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-success text-center">Recovered</h5>
+          <h6 class="card-subtitle mb-2 text-success total-is-recovered"></h6>
+          <p class="card-text text-success text-center total-recovered"></p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card border-0" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-center">Deceased</h5>
+          <h6 class="card-subtitle mb-2 text-muted total-is-deceased"></h6>
+          <p class="card-text text-muted text-center total-deceased"></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="container-fluid">
+    <div class="row ">
+      <div class="col heading">State/UT</div>
+      <div class="col heading">Confirmed</div>
+      <div class="col heading">Active</div>
+      <div class="col heading">Recovered</div>
+      <div class="col heading">Deceased</div>
+    </div>
+  </div>
+
+  <script>
+    var state_ut = {
+      "AN": "Andaman and Nicobar Islands",
+      "AP": "Andhra Pradesh",
+      "AR": "Arunachal Pradesh",
+      "AS": "Assam",
+      "BR": "Bihar",
+      "CH": "Chandigarh",
+      "CT": "Chhattisgarh",
+      "DL": "Delhi",
+      "DN": "Dadra And Nagar Haveli",
+      "GA": "Goa",
+      "GJ": "Gujarat",
+      "HP": "Himachal Pradesh",
+      "HR": "Haryana",
+      "JH": "Jharkhand",
+      "JK": "Jammu and Kashmir",
+      "KA": "Karnataka",
+      "KL": "Kerala",
+      "LA": "Ladakh",
+      "LD": "Lakshadweep",
+      "MH": "Maharashtra",
+      "ML": "Meghalaya",
+      "MN": "Manipur",
+      "MP": "Madhya Pradesh",
+      "MZ": "Mizoram",
+      "NL": "Nagaland",
+      "OR": "Orissa",
+      "PB": "Punjab",
+      "PY": "Pondicherry",
+      "RJ": "Rajasthan",
+      "SK": "Sikkim",
+      "TG": "TELANGANA",
+      "TN": "Tamil Nadu",
+      "TR": "Tripura",
+      "TT": "TOTAL",
+      "UP": "Uttar Pradesh",
+      "UT": "Uttarakhand",
+      "WB": "West Bengal"
+    };
+    $(document).ready(function () {
+      $.getJSON("https://api.covid19india.org/v4/min/data.min.json", function (data) {
+        console.log(data);
+        var arr = data;
+        for (var key in arr) {
+          if (key == 'TT') {
+            $("p.total-confirmed").append(arr['TT']['total']['confirmed'])
+            $("p.total-active").append((arr['TT']['total']['confirmed'] - arr['TT']['total']['recovered'] - arr['TT']['total']['deceased']))
+            $("p.total-recovered").append(arr['TT']['total']['recovered'])
+            $("p.total-deceased").append(arr['TT']['total']['deceased'])
+
+
+            console.log(arr['TT']['delta']['confirmed']);
+
+
+            if(arr['TT']['delta']){
+
+              if(arr['TT']['delta']['confirmed']){
+
+                var is_total_confirmed = arr['TT']['delta']['confirmed'];
+                $("h6.total-is-confirmed").append('<div class="is-total-confirmed text-center">+'+is_total_confirmed+'</div>')
+              }
+              if(arr['TT']['delta']['recovered']){
+
+                var is_total_recovered = arr['TT']['delta']['recovered'];
+                $("h6.total-is-recovered").append('<div class="is-total-confirmed text-center">+'+is_total_confirmed+'</div>')
+              }
+              if(arr['TT']['delta']['deceased']){
+
+                var is_total_deceased = arr['TT']['delta']['deceased'];
+                $("h6.total-is-deceased").append('<div class="is-total-confirmed text-center">+'+is_total_confirmed+'</div>')
+              }
+            }
+            continue;
+          }
+          $("div.container-fluid").append('<div class="row" id=' + key + '></div>');
+
+          $("div.container-fluid div#" + key).append('<div class="col state_ut" >' + state_ut[key] + '</div>');
+
+          $("div.container-fluid div#" + key).append('<div class="col statistics text-right confirmed"><div class="total">' + arr[key]['total']['confirmed'] + '</div></div>');
+
+          $("div.container-fluid div#" + key).append('<div class="col statistics text-right active"><div class="total">' + (arr[key]['total']['confirmed'] - arr[key]['total']['recovered'] - arr[key]['total']['deceased']) + '</div></div>');
+
+          $("div.container-fluid div#" + key).append('<div class="col statistics text-right recovered"> <div class="total">' + arr[key]['total']['recovered'] + '</div></div>');
+
+          $("div.container-fluid div#" + key).append('<div class="col statistics text-right deceased"><div class="total">' + arr[key]['total']['deceased'] + '</div></div>');
+
+
+          if (arr[key]['delta']) {
+            if (arr[key]['delta']['confirmed']) {
+              // console.log('confirmed = '+arr[key]['delta']['confirmed']);
+              var is_confirmed = arr[key]['delta']['confirmed'];
+              $("div#"+key).children("div.confirmed").prepend('<div class="is-confirmed"><i class="fas fa-arrow-up" style="color:rgb(255, 79, 79);"></i>'+is_confirmed+'</div>');
+            }
+            if (arr[key]['delta']['recovered']) {
+              // console.log('recovered = '+arr[key]['delta']['recovered']);
+              var is_recovered = arr[key]['delta']['recovered'];
+              $("div#"+key).children("div.recovered").prepend('<div class="is-recovered"><i class="fas fa-arrow-up" style="color:rgb(59, 192, 59);"></i>'+is_recovered+'</div>');
+            }
+            if (arr[key]['delta']['deceased']) {
+              // console.log('deceased = '+arr[key]['delta']['deceased']);
+              var is_deceased = arr[key]['delta']['deceased'];
+              $("div#"+key).children("div.deceased").prepend('<div class="is-deceased"><i class="fas fa-arrow-up" style="color: rgb(129, 129, 129);"></i>'+is_deceased+'</div>');
+            }
+          }
+
+
+        }
+      });
+    })
+  </script>
+</body>
+
+</html>

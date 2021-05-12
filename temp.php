@@ -123,13 +123,9 @@
             continue;
         ?>
           <tr>
-            <td>
+            <td id="<?php echo $x;?>">
               <?php echo $state_ut[$x]; ?> 
-              <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 user-hidden">Live Data <i class="far fa-dot-circle" style="width: 5px;"></i>  
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-              </button>
+              <button class="btn btn-outline-primary user-hidden btn-sm " id="<?php echo $x.'btn';?>">Live Data<i class="fas fa-arrow-right" style="margin: 0 0 0 7px;"></i></button>
           </td>
             <td><?php echo $value['total']['confirmed']; ?></td>
             <td><?php echo ($value['total']['confirmed'] - $value['total']['recovered'] - $value['total']['deceased']);?></td>
@@ -161,7 +157,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <script>
       $(document).ready(function(){
-        alert("hello");
+        $("td").click(function(){
+          var x = $(this).attr('id');
+          $("td#"+x+" button.user-hidden").show(1000);
+          $("#"+x+"btn").click(function(){
+            $("td#"+x).append("<div style='with:100%;'>hello</div>");
+                // console.log('hello');
+          })
+        })
       })
     </script>
 </body>
