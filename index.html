@@ -76,6 +76,21 @@
       background-color: rgb(182, 182, 182);
       cursor: pointer;
     }
+    .row:hover .confirmed {
+      color: #d9534f;
+      font-weight: 700;
+    }
+    .row:hover .active {
+      color: #0275d8;
+      font-weight: 700;
+    }
+    .row:hover .recovered {
+      color: #5cb85c;
+      font-weight: 700;
+    }
+    .row:hover .deceased {
+      font-weight: 700;
+    }
 
     .row:hover .state_ut {
       background-color: rgb(182, 182, 182);
@@ -133,7 +148,10 @@
       body {
         font-size: 0.6rem;
       }
-
+      .card-text{
+        font-size: 1rem;
+        font-weight: 650;
+      }
       .is-confirmed,
       .is-active,
       .is-recovered,
@@ -142,6 +160,9 @@
         font-weight: 650;
 
       }
+      div.form-group {
+      width: 90vw;
+    }
     }
   </style>
   <title>COVID DATA</title>
@@ -190,7 +211,7 @@
 
   <div class="containers">
     <div class="form-group">
-      <input type="text" class="form-control" id="search" placeholder="Search States/UT eg. Delhi, Assam, Goa">
+      <input type="text" class="form-control" id="search" placeholder="Search States/UT eg. Delhi, Maharashtra">
     </div>
   </div>
 
@@ -313,6 +334,12 @@
 
         }
       });
+      // $("div.row").mouseenter(function(){
+      //   $(this).children('div.confirmed').children('total').addClass('text-danger');
+      //   // console.log($(this).attr("id"));
+      //   console.log('hello');
+        
+      // })
       $("input#search").keyup(function(){
             var text = $(this).val();
             text = text.toLowerCase()
@@ -337,6 +364,9 @@
                     }
             }
         })
+
+    
+     
     })
   </script>
 </body>
