@@ -30,10 +30,12 @@
 
     .row {
       width: 100%;
+      margin: 0;
     }
 
-    .col {
-      /* padding-right: 10px; */
+    div.card {
+      height: 100%;
+      margin: 0 auto;
     }
 
     .heading,
@@ -78,33 +80,72 @@
       background-color: rgb(182, 182, 182);
       cursor: pointer;
     }
-    .is-confirmed,.is-active,.is-recovered,.is-deceased {
+
+    .is-confirmed,
+    .is-active,
+    .is-recovered,
+    .is-deceased {
       font-size: 0.85rem;
       font-weight: 650;
 
     }
+
     .is-confirmed {
       color: rgb(255, 79, 79);
     }
+
     .is-active {
       color: rgb(255, 79, 79);
     }
+
     .is-recovered {
       color: rgb(59, 192, 59);
     }
+
     .is-deceased {
       color: rgb(129, 129, 129);
     }
-    h6.total-is-confirmed,h6.total-is-recovered,h6.total-is-deceased {
+
+    h6.total-is-confirmed,
+    h6.total-is-recovered,
+    h6.total-is-deceased {
       font-size: 0.85rem;
+    }
+
+    @media only screen and (max-width:576px) {
+
+      .heading,
+      .state_ut,
+      .statistics {
+        /* border: 1px solid grey; */
+        border-radius: 2px;
+        padding: 0px;
+      }
+
+      .container-fluid {
+        padding: 0;
+      }
+
+      body {
+        font-size: 0.6rem;
+      }
+
+      .is-confirmed,
+      .is-active,
+      .is-recovered,
+      .is-deceased {
+        font-size: 0.50rem;
+        font-weight: 650;
+
+      }
     }
   </style>
   <title>COVID DATA</title>
 </head>
 
 <body>
-  <div class="row">
-    <div class="col">
+  <div class="row ">
+    <div class="col-lg-3 col-sm-6 col-12">
       <div class="card border-0" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title text-danger text-center">Confirmed</h5>
@@ -113,7 +154,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-lg-3 col-sm-6 col-12">
       <div class="card border-0" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title text-primary text-center">Active</h5>
@@ -122,7 +163,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-lg-3 col-sm-6 col-12">
       <div class="card border-0" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title text-success text-center">Recovered</h5>
@@ -131,7 +172,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-lg-3 col-sm-6 col-12">
       <div class="card border-0" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title text-muted text-center">Deceased</h5>
@@ -142,13 +183,13 @@
     </div>
 
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid ">
     <div class="row ">
-      <div class="col heading">State/UT</div>
-      <div class="col heading">Confirmed</div>
-      <div class="col heading">Active</div>
-      <div class="col heading">Recovered</div>
-      <div class="col heading">Deceased</div>
+      <div class="col-sm-3 col-3 heading">State/UT</div>
+      <div class="col-sm-2 col-2 heading">Confirmed</div>
+      <div class="col-sm-2 col-2 heading">Active</div>
+      <div class="col-sm-2 col-2 heading">Recovered</div>
+      <div class="col-sm-2 col-2 heading">Deceased</div>
     </div>
   </div>
 
@@ -207,54 +248,54 @@
             console.log(arr['TT']['delta']['confirmed']);
 
 
-            if(arr['TT']['delta']){
+            if (arr['TT']['delta']) {
 
-              if(arr['TT']['delta']['confirmed']){
+              if (arr['TT']['delta']['confirmed']) {
 
                 var is_total_confirmed = arr['TT']['delta']['confirmed'];
-                $("h6.total-is-confirmed").append('<div class="is-total-confirmed text-center">+'+is_total_confirmed+'</div>')
+                $("h6.total-is-confirmed").append('<div class="is-total-confirmed text-center">+' + is_total_confirmed + '</div>')
               }
-              if(arr['TT']['delta']['recovered']){
+              if (arr['TT']['delta']['recovered']) {
 
                 var is_total_recovered = arr['TT']['delta']['recovered'];
-                $("h6.total-is-recovered").append('<div class="is-total-confirmed text-center">+'+is_total_confirmed+'</div>')
+                $("h6.total-is-recovered").append('<div class="is-total-confirmed text-center">+' + is_total_confirmed + '</div>')
               }
-              if(arr['TT']['delta']['deceased']){
+              if (arr['TT']['delta']['deceased']) {
 
                 var is_total_deceased = arr['TT']['delta']['deceased'];
-                $("h6.total-is-deceased").append('<div class="is-total-confirmed text-center">+'+is_total_confirmed+'</div>')
+                $("h6.total-is-deceased").append('<div class="is-total-confirmed text-center">+' + is_total_confirmed + '</div>')
               }
             }
             continue;
           }
-          $("div.container-fluid").append('<div class="row" id=' + key + '></div>');
+          $("div.container-fluid").append('<div class="row table" id=' + key + '></div>');
 
-          $("div.container-fluid div#" + key).append('<div class="col state_ut" >' + state_ut[key] + '</div>');
+          $("div.container-fluid div#" + key).append('<div class="col-sm-3 col-3 state_ut" >' + state_ut[key] + '</div>');
 
-          $("div.container-fluid div#" + key).append('<div class="col statistics text-right confirmed"><div class="total">' + arr[key]['total']['confirmed'] + '</div></div>');
+          $("div.container-fluid div#" + key).append('<div class="col-sm-2 col-2 statistics text-right confirmed"><div class="total">' + arr[key]['total']['confirmed'] + '</div></div>');
 
-          $("div.container-fluid div#" + key).append('<div class="col statistics text-right active"><div class="total">' + (arr[key]['total']['confirmed'] - arr[key]['total']['recovered'] - arr[key]['total']['deceased']) + '</div></div>');
+          $("div.container-fluid div#" + key).append('<div class="col-sm-2 col-2 statistics text-right active"><div class="total">' + (arr[key]['total']['confirmed'] - arr[key]['total']['recovered'] - arr[key]['total']['deceased']) + '</div></div>');
 
-          $("div.container-fluid div#" + key).append('<div class="col statistics text-right recovered"> <div class="total">' + arr[key]['total']['recovered'] + '</div></div>');
+          $("div.container-fluid div#" + key).append('<div class="col-sm-2 col-2 statistics text-right recovered"> <div class="total">' + arr[key]['total']['recovered'] + '</div></div>');
 
-          $("div.container-fluid div#" + key).append('<div class="col statistics text-right deceased"><div class="total">' + arr[key]['total']['deceased'] + '</div></div>');
+          $("div.container-fluid div#" + key).append('<div class="col-sm-2 col-2 statistics text-right deceased"><div class="total">' + arr[key]['total']['deceased'] + '</div></div>');
 
 
           if (arr[key]['delta']) {
             if (arr[key]['delta']['confirmed']) {
               // console.log('confirmed = '+arr[key]['delta']['confirmed']);
               var is_confirmed = arr[key]['delta']['confirmed'];
-              $("div#"+key).children("div.confirmed").prepend('<div class="is-confirmed"><i class="fas fa-arrow-up" style="color:rgb(255, 79, 79);"></i>'+is_confirmed+'</div>');
+              $("div#" + key).children("div.confirmed").prepend('<div class="is-confirmed"><i class="fas fa-arrow-up" style="color:rgb(255, 79, 79);"></i>' + is_confirmed + '</div>');
             }
             if (arr[key]['delta']['recovered']) {
               // console.log('recovered = '+arr[key]['delta']['recovered']);
               var is_recovered = arr[key]['delta']['recovered'];
-              $("div#"+key).children("div.recovered").prepend('<div class="is-recovered"><i class="fas fa-arrow-up" style="color:rgb(59, 192, 59);"></i>'+is_recovered+'</div>');
+              $("div#" + key).children("div.recovered").prepend('<div class="is-recovered"><i class="fas fa-arrow-up" style="color:rgb(59, 192, 59);"></i>' + is_recovered + '</div>');
             }
             if (arr[key]['delta']['deceased']) {
               // console.log('deceased = '+arr[key]['delta']['deceased']);
               var is_deceased = arr[key]['delta']['deceased'];
-              $("div#"+key).children("div.deceased").prepend('<div class="is-deceased"><i class="fas fa-arrow-up" style="color: rgb(129, 129, 129);"></i>'+is_deceased+'</div>');
+              $("div#" + key).children("div.deceased").prepend('<div class="is-deceased"><i class="fas fa-arrow-up" style="color: rgb(129, 129, 129);"></i>' + is_deceased + '</div>');
             }
           }
 
