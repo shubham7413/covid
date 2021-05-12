@@ -112,7 +112,10 @@
     h6.total-is-deceased {
       font-size: 0.85rem;
     }
-
+    div.form-group {
+      width: 50vw;
+      margin: 20px auto;
+    }
     @media only screen and (max-width:576px) {
 
       .heading,
@@ -184,6 +187,13 @@
     </div>
 
   </div>
+
+  <div class="containers">
+    <div class="form-group">
+      <input type="text" class="form-control" id="search" placeholder="Search States/UT eg. Delhi, Assam, Goa">
+    </div>
+  </div>
+
   <div class="container-fluid ">
     <div class="row ">
       <div class="col-sm-3 col-3 heading">State/UT</div>
@@ -236,7 +246,7 @@
     };
     $(document).ready(function () {
       $.getJSON("https://api.covid19india.org/v4/min/data.min.json", function (data) {
-        console.log(data);
+        // console.log(data);
         var arr = data;
         for (var key in arr) {
           if (key == 'TT') {
@@ -259,12 +269,12 @@
               if (arr['TT']['delta']['recovered']) {
 
                 var is_total_recovered = arr['TT']['delta']['recovered'];
-                $("h6.total-is-recovered").append('<div class="is-total-confirmed text-center">+' + is_total_confirmed + '</div>')
+                $("h6.total-is-recovered").append('<div class="is-total-confirmed text-center">+' + is_total_recovered + '</div>')
               }
               if (arr['TT']['delta']['deceased']) {
 
                 var is_total_deceased = arr['TT']['delta']['deceased'];
-                $("h6.total-is-deceased").append('<div class="is-total-confirmed text-center">+' + is_total_confirmed + '</div>')
+                $("h6.total-is-deceased").append('<div class="is-total-confirmed text-center">+' + is_total_deceased + '</div>')
               }
             }
             continue;
@@ -303,6 +313,30 @@
 
         }
       });
+      $("input#search").keyup(function(){
+            var text = $(this).val();
+            text = text.toLowerCase()
+
+
+            for(var key in state_ut)
+            {
+              console.log(key)
+              $("div#"+key).css('display','none')
+            }
+            
+            for(var key in state_ut)
+            {
+                var i;
+                var name = state_ut[key].toLowerCase()
+                
+                    if(name.startsWith(text))
+                    {
+                        // console.log(state_ut[key])
+                        $("#"+key).show()
+
+                    }
+            }
+        })
     })
   </script>
 </body>
