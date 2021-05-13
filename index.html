@@ -163,6 +163,10 @@
       div.form-group {
       width: 90vw;
     }
+      div.is-confirmed .spinner-grow,div.is-recovered .spinner-grow,div.is-deceased .spinner-grow{
+        width: 0.5rem;
+        height: 0.5rem;
+      }
     }
   </style>
   <title>COVID DATA</title>
@@ -317,17 +321,17 @@
             if (arr[key]['delta']['confirmed']) {
               // console.log('confirmed = '+arr[key]['delta']['confirmed']);
               var is_confirmed = arr[key]['delta']['confirmed'];
-              $("div#" + key).children("div.confirmed").prepend('<div class="is-confirmed"><i class="fas fa-arrow-up" style="color:rgb(255, 79, 79);"></i>' + is_confirmed + '</div>');
+              $("div#" + key).children("div.confirmed").prepend('<div class="is-confirmed"><i class="fas fa-arrow-up" style="color:rgb(255, 79, 79);margin-right:5px;"></i>' + is_confirmed + '<div class="spinner-grow spinner-grow-sm" style="margin-left:5px;"></div></div>');
             }
             if (arr[key]['delta']['recovered']) {
               // console.log('recovered = '+arr[key]['delta']['recovered']);
               var is_recovered = arr[key]['delta']['recovered'];
-              $("div#" + key).children("div.recovered").prepend('<div class="is-recovered"><i class="fas fa-arrow-up" style="color:rgb(59, 192, 59);"></i>' + is_recovered + '</div>');
+              $("div#" + key).children("div.recovered").prepend('<div class="is-recovered"><i class="fas fa-arrow-up" style="color:rgb(59, 192, 59);margin-right:5px;"></i>' + is_recovered + '<div class="spinner-grow spinner-grow-sm" style="margin-left:5px;"></div></div>');
             }
             if (arr[key]['delta']['deceased']) {
               // console.log('deceased = '+arr[key]['delta']['deceased']);
               var is_deceased = arr[key]['delta']['deceased'];
-              $("div#" + key).children("div.deceased").prepend('<div class="is-deceased"><i class="fas fa-arrow-up" style="color: rgb(129, 129, 129);"></i>' + is_deceased + '</div>');
+              $("div#" + key).children("div.deceased").prepend('<div class="is-deceased"><i class="fas fa-arrow-up" style="color: rgb(129, 129, 129);margin-right:5px;"></i>' + is_deceased + '<div class="spinner-grow spinner-grow-sm" style="margin-left:5px;"></div></div>');
             }
           }
 
