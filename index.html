@@ -267,7 +267,7 @@
     };
     $(document).ready(function () {
       $.getJSON("https://api.covid19india.org/v4/min/data.min.json", function (data) {
-        // console.log(data);
+        console.log(data);
         var arr = data;
         for (var key in arr) {
           if (key == 'TT') {
@@ -285,17 +285,17 @@
               if (arr['TT']['delta']['confirmed']) {
 
                 var is_total_confirmed = arr['TT']['delta']['confirmed'];
-                $("h6.total-is-confirmed").append('<div class="is-total-confirmed text-center">+' + is_total_confirmed + '</div>')
+                $("h6.total-is-confirmed").append('<div class="is-total-confirmed text-center">+' + is_total_confirmed + '<div class="spinner-grow spinner-grow-sm" style="margin-left:5px;"></div></div>')
               }
               if (arr['TT']['delta']['recovered']) {
 
                 var is_total_recovered = arr['TT']['delta']['recovered'];
-                $("h6.total-is-recovered").append('<div class="is-total-confirmed text-center">+' + is_total_recovered + '</div>')
+                $("h6.total-is-recovered").append('<div class="is-total-confirmed text-center">+' + is_total_recovered + '<div class="spinner-grow spinner-grow-sm" style="margin-left:5px;"></div></div>')
               }
               if (arr['TT']['delta']['deceased']) {
 
                 var is_total_deceased = arr['TT']['delta']['deceased'];
-                $("h6.total-is-deceased").append('<div class="is-total-confirmed text-center">+' + is_total_deceased + '</div>')
+                $("h6.total-is-deceased").append('<div class="is-total-confirmed text-center">+' + is_total_deceased + '<div class="spinner-grow spinner-grow-sm" style="margin-left:5px;"></div></div>')
               }
             }
             continue;
